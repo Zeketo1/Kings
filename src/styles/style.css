@@ -1,0 +1,13 @@
+.yellow__gradient {
+  background: radial-gradient(circle, #fffabb3d, transparent);
+}
+
+.glass {
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.087);
+  backdrop-filter: blur(2.3px);
+  -webkit-backdrop-filter: blur(2.3px);
+}
+
+.phone__gradient {
+  background: linear-gradient(to right, #7083c8, #e2bfcb, #d098b3, #7083c8);
+}
