@@ -55,6 +55,7 @@ const Banner = () => {
       />
       <div className="bubble__gradient h-[400px] w-[200px] absolute -bottom-[120px] right-0" />
       <img
+        id="services"
         src={bubbles}
         alt=""
         className="h-[400px] absolute -bottom-[120px] right-0"

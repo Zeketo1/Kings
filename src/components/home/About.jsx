@@ -2,7 +2,7 @@ import woman from "../../assets/woman.png";
 import { motion } from "motion/react";
 const About = () => {
   return (
-    <div id="about" className="px-10 md:px-14">
+    <div className="px-10 md:px-14">
       <div className="flex mb-4 gap-4 items-center font-medium">
         <motion.div
           initial={{ scaleX: 0 }}

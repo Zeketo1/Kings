@@ -42,7 +42,7 @@ const Services = () => {
   ];
 
   return (
-    <div id="services" className="px-10 md:px-14">
+    <div className="px-10 md:px-14">
       <div className="flex mb-4 gap-4 items-center font-medium">
         <motion.p
           initial={{ opacity: 0, x: -20 }}
@@ -78,7 +78,7 @@ const Services = () => {
         space, ensuring a clean, hygienic, and welcoming <br /> environment.
       </motion.p>
 
-      <div className="my-7 grid w-full place-items-center sm:grid-cols-2 lg:grid-cols-3 gap-10">
+      <div className="my-14 grid w-full place-items-center sm:grid-cols-2 lg:grid-cols-3 gap-10">
         {servicesOptions.map((item, i) => (
           <div key={i} className="relative">
             <motion.div
@@ -123,9 +123,7 @@ const Services = () => {
               </div>
               <motion.div
                 className="flex m-auto mt-5 cursor-pointer items-center gap-7 p-3 rounded-full w-fit text-white font-medium phone__gradient"
-                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                transition={{ type: "spring", stiffness: 400, damping: 17 }}
               >
                 BOOK SERVICES <IoMdArrowRoundForward className="text-[24px]" />
               </motion.div>
@@ -133,7 +131,7 @@ const Services = () => {
           </div>
         ))}
       </div>
-      <p className="mb-10 text-gray-600">
+      <p id="about" className="mb-10 text-gray-600">
         Let us handle the mess while you enjoy a fresh, spotless space.
       </p>
     </div>

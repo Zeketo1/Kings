@@ -21,7 +21,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="sticky top-0 w-full flex items-center glass justify-between py-3 px-10 lg:14">
+    <div className="sticky top-0 w-full flex items-center glass justify-between py-3 px-10 lg:14 z-[100]">
       <img src={Logo} alt="" className="h-[45px]" />
       <div className="min-[360px]:hidden sm:flex items-center gap-10">
         {navOptions.map((item, i) => (
