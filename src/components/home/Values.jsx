@@ -50,15 +50,13 @@ const Values = () => {
       >
         At kings, we are about;
       </motion.h1>
-      <div className="grid w-fit m-auto sm:grid-cols-2 lg:grid-cols-3 gap-10">
+      <div className="grid w-full place-items-center sm:grid-cols-2 lg:grid-cols-3 gap-10">
         {values.map((item, i) => (
           <motion.div
             style={{ backgroundColor: item.color }}
             key={i}
-            className={`px-3 cursor-pointer text-center ${
-              i === 2
-                ? "w-[270px] sm:w-full sm:col-span-3 lg:w-[270px] lg:col-span-1"
-                : "w-[270px]"
+            className={`px-3 cursor-pointer text-center w-[270px] sm:w-full lg:w-[270px] ${
+              i === 2 && "sm:col-span-2 lg:col-span-1"
             } h-[350px] rounded-[30px] flex flex-col justify-center items-center`}
             initial={{ opacity: 0, scale: 0.9, zIndex: 1 }}
             whileInView={{ opacity: 1, scale: 1, zIndex: 1 }}

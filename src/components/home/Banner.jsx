@@ -5,7 +5,7 @@ import { motion } from "motion/react";
 
 const Banner = () => {
   return (
-    <div className="flex justify-center md:justify-between items-center h-[90vh] xl:h-[80vh] 2xl:h-[70vh] px-5 lg:px-14">
+    <div className="flex mb-5 justify-center md:justify-between items-center h-[90vh] xl:h-[80vh] 2xl:h-[70vh] px-5 lg:px-14">
       <div>
         <div className="text-[30px] lg:text-[45px] text-[#7985C7] font-righteous font-[400]">
           <motion.p
