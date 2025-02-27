@@ -50,7 +50,7 @@ const Values = () => {
       >
         At kings, we are about;
       </motion.h1>
-      <div className="grid w-fit m-auto sm:grid-cols-2 lg:grid-cols-3 gap-3 gap-3">
+      <div className="grid w-fit m-auto sm:grid-cols-2 lg:grid-cols-3 gap-3">
         {values.map((item, i) => (
           <motion.div
             style={{ backgroundColor: item.color }}

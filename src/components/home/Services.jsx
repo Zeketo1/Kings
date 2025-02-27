@@ -42,9 +42,21 @@ const Services = () => {
   ];
 
   return (
-    <div className="px-10 md:px-14">
+    <div id="services" className="px-10 md:px-14">
       <div className="flex mb-4 gap-4 items-center font-medium">
-        Services <div className="rounded-full h-[2px] w-full bg-gray-400" />
+        <motion.p
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          className="flex-shrink-0"
+        >
+          Services
+        </motion.p>{" "}
+        <motion.div
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          transition={{ duration: 0.8 }}
+          className="rounded-full h-[2px] w-full bg-gray-400"
+        />
       </div>
       <motion.h1
         initial={{ x: -400 }}
@@ -66,7 +78,7 @@ const Services = () => {
         space, ensuring a clean, hygienic, and welcoming <br /> environment.
       </motion.p>
 
-      <div className="my-7 grid w-fit m-auto sm:grid-cols-2 lg:grid-cols-3 gap-3">
+      <div className="my-7 grid w-full place-items-center sm:grid-cols-2 lg:grid-cols-3 gap-10">
         {servicesOptions.map((item, i) => (
           <div key={i} className="relative">
             <motion.div
@@ -74,7 +86,7 @@ const Services = () => {
               className="flex flex-col z-1 cursor-pointer justify-between px-5 py-10 rounded-[30px] max-w-[300px] relative"
               initial={{ opacity: 0, scale: 0.9, zIndex: 1 }}
               whileInView={{ opacity: 1, scale: 1, zIndex: 1 }}
-              whileHover={{ 
+              whileHover={{
                 scale: 1.15,
                 transition: { duration: 0.3, ease: "easeOut" },
                 zIndex: 100,
@@ -83,14 +95,14 @@ const Services = () => {
               transition={{
                 duration: 0.5,
                 delay: i * 0.1,
-                ease: "easeOut"
+                ease: "easeOut",
               }}
             >
-              <img 
-                src={item.image} 
-                className="h-10 absolute top-[-20px] right-[20px] z-10" 
+              <img
+                src={item.image}
+                className="h-12 absolute top-[-30px] right-[20px] z-10"
               />
-              <motion.h1 
+              <motion.h1
                 className="text-[19px] mb-3 text-[#7985C7] font-righteous font-[400]"
                 whileHover={{ scale: 1.02 }}
               >
@@ -99,7 +111,7 @@ const Services = () => {
               <p className="mb-4">{item.desc}</p>
               <div className="mb-4 pl-2">
                 {item.gains.map((gain, index) => (
-                  <motion.li 
+                  <motion.li
                     key={index}
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
@@ -109,7 +121,7 @@ const Services = () => {
                   </motion.li>
                 ))}
               </div>
-              <motion.div 
+              <motion.div
                 className="flex m-auto mt-5 cursor-pointer items-center gap-7 p-3 rounded-full w-fit text-white font-medium phone__gradient"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}

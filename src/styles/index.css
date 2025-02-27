@@ -2,8 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  scroll-behavior: smooth;
+}
+
 body {
-    background-color: #F5E6E3;
-    font-family: 'Raleway', serif;
-    font-weight: 400;
+  background-color: #f5e6e3;
+  font-family: "Raleway", serif;
+  font-weight: 400;
 }

@@ -1,9 +1,22 @@
 import woman from "../../assets/woman.png";
+import { motion } from "motion/react";
 const About = () => {
   return (
-    <div className="px-10 md:px-14">
+    <div id="about" className="px-10 md:px-14">
       <div className="flex mb-4 gap-4 items-center font-medium">
-        <div className="rounded-full h-[2px] w-full bg-gray-400" /> About
+        <motion.div
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          transition={{ duration: 0.8 }}
+          className="rounded-full h-[2px] w-full bg-gray-400"
+        />{" "}
+        <motion.p
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          className="flex-shrink-0"
+        >
+          About Us
+        </motion.p>
       </div>
       <div className="grid grid-cols-1 mb-10 lg:grid-cols-[38%_60%] gap-[100px] lg:px-14">
         <img src={woman} className="hidden lg:block object-cover" alt="" />

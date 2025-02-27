@@ -3,11 +3,23 @@
 }
 
 .glass {
+  /* box-shadow: 0 3px 4px rgba(0, 0, 0, 0.087); */
+  backdrop-filter: blur(2.3px);
+  -webkit-backdrop-filter: blur(2.3px);
+}
+
+.glass2 {
   box-shadow: 0 3px 4px rgba(0, 0, 0, 0.087);
   backdrop-filter: blur(2.3px);
   -webkit-backdrop-filter: blur(2.3px);
 }
 
 .phone__gradient {
-  background: linear-gradient(to right, #7083c8, #e2bfcb, #d098b3, #7083c8);
+  background: linear-gradient(
+    to right,
+    #7083c8 0%,
+    #e2bfcb 33%,
+    #d098b3 66%,
+    #7083c8 100%
+  ) !important;
 }

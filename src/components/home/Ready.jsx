@@ -6,7 +6,7 @@ const Ready = () => {
         <h1 className="text-[30px] lg:text-[45px] mb-3 text-[#7985C7] font-righteous font-[400]">
           Clean Spaces, Happy Faces!
         </h1>
-        <button className="py-2 px-5 text-[14px] lg:text-[15px] rounded-full bg-[#343851] text-white font-medium">SCHEDULE A CALL</button>
+        <button className="py-2 px-5 text-[14napx] lg:text-[15px] rounded-full bg-[#343851] text-white font-medium">SCHEDULE A CALL</button>
       </div>
     </div>
   );

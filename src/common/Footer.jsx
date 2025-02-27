@@ -2,7 +2,7 @@ import Logo from "../assets/Brand Guideline KIngs.png";
 
 const Footer = () => {
   return (
-    <div className="grid lg:grid-cols-2 gap-10 py-10 px-12 lg:px-20">
+    <div id="contact" className="grid lg:grid-cols-2 gap-10 py-10 px-12 lg:px-20">
       <div className="flex flex-wrap gap-10">
         <img src={Logo} alt="Logo" className="h-[45px]" />
         <div className="flex flex-col gap-4">
