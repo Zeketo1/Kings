@@ -61,6 +61,11 @@ body {
     filter: blur(243px);
 }
 
+.services__gradient {
+    background: rgba(112, 131, 200, 29%);
+    filter: blur(243px);
+}
+
 @keyframes elevate {
     0% {
         transform: translateY(0);
