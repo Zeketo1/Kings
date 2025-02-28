@@ -1,15 +1,20 @@
-import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import React, { useState, useEffect, useRef } from "react";
+import { motion, useSpring } from "framer-motion";
 import { FaSprayCan } from "react-icons/fa";
 import { BsStars } from "react-icons/bs";
 import { MdOutlineCleaningServices } from "react-icons/md";
 
 const CustomCursor = () => {
-    const [mousePosition, setMousePosition] = useState({ x: -50, y: -50 });
+    const cursorRef = useRef(null);
     const [cursorVariant, setCursorVariant] = useState("default");
     const [isClicking, setIsClicking] = useState(false);
     const [isVisible, setIsVisible] = useState(true);
     const [isMobileDevice, setIsMobileDevice] = useState(false);
+
+    // Use spring physics for smooth cursor movement
+    const springConfig = { damping: 25, stiffness: 300 };
+    const mouseX = useSpring(0, springConfig);
+    const mouseY = useSpring(0, springConfig);
 
     useEffect(() => {
         // Check if the device is a mobile/touch device
@@ -39,10 +44,9 @@ const CustomCursor = () => {
         if (isMobileDevice) return;
 
         const mouseMove = (e) => {
-            setMousePosition({
-                x: e.clientX,
-                y: e.clientY,
-            });
+            // Update spring physics values for smooth movement
+            mouseX.set(e.clientX - 12);
+            mouseY.set(e.clientY - 12);
         };
 
         const mouseDown = () => {
@@ -103,36 +107,7 @@ const CustomCursor = () => {
             document.removeEventListener("mouseleave", handleMouseLeave);
             document.removeEventListener("mouseenter", handleMouseEnter);
         };
-    }, [isMobileDevice]);
-
-    // Cursor variants
-    const variants = {
-        default: {
-            x: mousePosition.x - 12,
-            y: mousePosition.y - 12,
-            opacity: isVisible ? 1 : 0,
-            transition: {
-                type: "spring",
-                mass: 0.3,
-                stiffness: 800,
-                damping: 30,
-                opacity: { duration: 0.2 },
-            },
-        },
-        pointer: {
-            x: mousePosition.x - 12,
-            y: mousePosition.y - 12,
-            opacity: isVisible ? 1 : 0,
-            scale: 1.2,
-            transition: {
-                type: "spring",
-                mass: 0.3,
-                stiffness: 800,
-                damping: 30,
-                opacity: { duration: 0.2 },
-            },
-        },
-    };
+    }, [isMobileDevice, mouseX, mouseY]);
 
     // Cursor appearance based on state
     const getCursorContent = () => {
@@ -195,17 +170,24 @@ const CustomCursor = () => {
 
     return (
         <motion.div
+            ref={cursorRef}
             className="cursor-container fixed top-0 left-0 pointer-events-none z-[9999] flex items-center justify-center rounded-full"
-            variants={variants}
-            animate={cursorVariant}
             style={{
                 width: "24px",
                 height: "24px",
+                x: mouseX,
+                y: mouseY,
+                opacity: isVisible ? 1 : 0,
                 backgroundImage:
                     "linear-gradient(to right, #7083c8 -50%, #e2bfcb 33%, #d098b3 86%, #7083c8 110%)",
                 boxShadow: isClicking
                     ? "0 0 15px rgba(224, 191, 203, 0.6)"
                     : "0 0 5px rgba(224, 191, 203, 0.3)",
+                scale: cursorVariant === "pointer" ? 1.2 : 1,
+                transition: {
+                    opacity: { duration: 0.2 },
+                    scale: { duration: 0.2 }
+                }
             }}
         >
             {getCursorContent()}

@@ -9,34 +9,32 @@ import Bubbles from "../common/Bubbles";
 import MotionWrapper from "../components/MotionWrapper";
 
 const Home = () => {
-  return (
-    <div className="flex over flex-col items-center">
-      <div className="w-full sm:w-[90%] 2xl:w-[80%] 3xl:w-[70%]">
-        <Navbar />
-        <Bubbles />
-        <MotionWrapper>
-          <Banner />
-        </MotionWrapper>
-        <MotionWrapper>
-          <Services />
-        </MotionWrapper>
-        <MotionWrapper delay={0.2}>
-          <About />
-        </MotionWrapper>
-        <div className="value__gradient">
-          <MotionWrapper delay={0.3}>
-            <Values />
-          </MotionWrapper>
-          <MotionWrapper delay={0.4}>
-            <Ready />
-          </MotionWrapper>
+    return (
+        <div className="flex over flex-col items-center">
+            <div className="w-full sm:w-[90%] 2xl:w-[80%] 3xl:w-[70%]">
+                <Navbar />
+                <Bubbles />
+                <Banner />
+                <MotionWrapper>
+                    <Services />
+                </MotionWrapper>
+                <MotionWrapper delay={0.2}>
+                    <About />
+                </MotionWrapper>
+                <div className="value__gradient">
+                    <MotionWrapper delay={0.3}>
+                        <Values />
+                    </MotionWrapper>
+                    <MotionWrapper delay={0.4}>
+                        <Ready />
+                    </MotionWrapper>
+                </div>
+                <MotionWrapper delay={0.5}>
+                    <Footer />
+                </MotionWrapper>
+            </div>
         </div>
-        <MotionWrapper delay={0.5}>
-          <Footer />
-        </MotionWrapper>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default Home;

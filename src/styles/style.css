@@ -46,6 +46,7 @@ body {
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* IE and Edge */
     scroll-behavior: smooth;
+    width: 100%;
 }
 
 /* Custom cursor styles */
@@ -57,17 +58,52 @@ body {
 
 /* Only apply cursor: none on desktop devices */
 @media (min-width: 769px) {
-  * {
-    cursor: none !important;
-  }
+    * {
+        cursor: auto;
+    }
 }
 
 /* Apply cursor-pointer class to elements that should trigger the pointer variant */
-.phone__gradient, .cursor-pointer, a, button, [role="button"] {
+.phone__gradient,
+.cursor-pointer,
+a,
+button,
+[role="button"] {
     cursor: none !important;
 }
 
 /* Improve hover states for interactive elements */
-a:hover, button:hover, .cursor-pointer:hover {
+a:hover,
+button:hover,
+.cursor-pointer:hover {
     transition: all 0.2s ease;
+}
+
+.bubble__gradient {
+    background: rgba(112, 131, 200, 55%);
+    filter: blur(243px);
+}
+
+@keyframes elevate {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.bounce {
+    animation: elevate 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    transition: transform 0.3s ease;
+}
+
+#contact div > p,
+a {
+    cursor: pointer;
+    text-decoration: underline;
+    color: #7985c7;
 }

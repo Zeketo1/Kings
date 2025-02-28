@@ -6,6 +6,7 @@ import { motion } from "motion/react";
 const Banner = () => {
     return (
         <div className="flex mb-10 overflow-hidden justify-center md:justify-between items-center h-[90vh] xl:h-[80vh] 2xl:h-[70vh] px-5 lg:px-14">
+            <span id="home"></span>
             <div>
                 <div className="text-[30px] lg:text-[45px] text-[#7985C7] font-righteous font-[400]">
                     <motion.p
@@ -56,20 +57,22 @@ const Banner = () => {
                     </p>
                 </motion.div>
             </div>
-            <motion.img
-                initial={{ x: 500 }}
-                animate={{ x: 0 }}
-                transition={{ duration: 0.5, delay: 0.5 }}
-                className="hidden md:block"
-                src={bannerImg}
-                alt={bannerImg}
-            />
-            <div className="bubble__gradient h-[400px] w-[200px] absolute -bottom-[120px] right-0" />
+            <div>
+                <motion.img
+                    initial={{ x: 500 }}
+                    animate={{ x: 0 }}
+                    transition={{ duration: 0.5, delay: 0.5 }}
+                    className="hidden md:block delay-500 bounce z-50 relative"
+                    src={bannerImg}
+                    alt={bannerImg}
+                />
+            </div>
+            <div className="bubble__gradient hidden sm:block rounded-full z-1 h-[600px] w-[600px] absolute -bottom-[120px] -right-[250px]" />
             <img
                 id="services"
                 src={bubbles}
                 alt=""
-                className="h-[400px] absolute -bottom-[120px] right-0"
+                className="h-[400px] absolute -bottom-[120px] right-0 z-1"
             />
             <div className="absolute z-[100] -left-[70px] -top-16 yellow__gradient h-[400px] w-[400px]"></div>
         </div>

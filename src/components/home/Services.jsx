@@ -44,6 +44,7 @@ const Services = () => {
 
     return (
         <div className="px-10 md:px-14">
+            <span id="services"></span>
             <div className="flex mb-4 gap-4 items-center font-medium">
                 <motion.p
                     initial={{ opacity: 0, x: -20 }}
@@ -82,12 +83,10 @@ const Services = () => {
                     <motion.div
                         style={{ backgroundColor: "transparent" }}
                         className="flex flex-col z-1 cursor-pointer justify-between px-5 py-10 rounded-[30px] max-w-[300px] relative"
-                        initial={{ opacity: 0, scale: 0.9, zIndex: 1 }}
-                        whileInView={{ opacity: 1, scale: 1, zIndex: 1 }}
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
                         whileHover={{
-                            scale: 1.15,
                             transition: { duration: 0.3, ease: "easeOut" },
-                            zIndex: 100,
                         }}
                         viewport={{ once: false }}
                         transition={{

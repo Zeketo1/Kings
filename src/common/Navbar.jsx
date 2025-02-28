@@ -2,24 +2,21 @@ import { FiPhone } from "react-icons/fi";
 import Logo from "../assets/Brand Guideline KIngs.png";
 import { useState } from "react";
 import { CiMenuFries } from "react-icons/ci";
-import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { IoMdClose } from "react-icons/io";
+import { motion, AnimatePresence } from "framer-motion";
+import { scrollToElementWithOffset } from "../utils";
 
 const Navbar = () => {
     const navOptions = [
-        { title: "Services" },
-        { title: "About Us", path: "about" },
-        { title: "Contact" },
+        { title: "Services", to: "#services", offset: -240 },
+        { title: "About Us", to: "#about", offset: 100 },
+        { title: "Contact", to: "#contact", offset: 100 },
     ];
 
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
-        console.log(isOpen);
-    };
-    const removeMenu = () => {
-        toggleMenu();
     };
 
     return (
@@ -27,66 +24,85 @@ const Navbar = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.5 }}
-            className="sticky top-0 w-full flex items-center glass justify-between py-3 px-10 lg:14 z-[100]"
+            className={`sticky top-0 w-full z-[999] flex items-center ${
+                isOpen ? "bg-[#F5E6E3]" : "glass"
+            } justify-between py-3 px-4 sm:px-10 lg:px-14`}
         >
-            <img src={Logo} alt="" className="h-[45px]" />
-            <div className="min-[360px]:hidden sm:flex items-center gap-10">
+            <img
+                src={Logo}
+                alt=""
+                className="h-[45px]"
+                onClick={() => scrollToElementWithOffset("#home", 1000)}
+            />
+            <div className="hidden sm:flex items-center gap-10">
                 {navOptions.map((item, i) => (
-                    <Link
-                        to={`#${
-                            item.path
-                                ? item.path.toLowerCase()
-                                : item.title.toLowerCase()
-                        }`}
+                    <a
                         key={i}
+                        className="cursor-pointer hover:text-[#7985C7] transition-colors"
                         onClick={(e) => {
-                            e.preventDefault(); // Prevent default navigation
-
-                            const sectionId = item.path
-                                ? item.path.toLowerCase()
-                                : item.title.toLowerCase();
-                            const section = document.getElementById(sectionId);
-
-                            if (section) {
-                                section.scrollIntoView({ behavior: "smooth" });
-                            }
+                            e.preventDefault();
+                            scrollToElementWithOffset(item.to, item.offset);
                         }}
                     >
                         {item.title}
-                    </Link>
+                    </a>
                 ))}
                 <div className="phone__gradient p-2 h-fit w-fit rounded-full flex items-center justify-center">
                     <FiPhone className="text-white text-[18px]" />
                 </div>
             </div>
-            <div className="relative block sm:hidden">
-                {/* Burger Button */}
+
+            {/* Mobile menu button */}
+            <div className="flex sm:hidden items-center">
+                <div className="phone__gradient p-2 h-fit w-fit rounded-full flex items-center justify-center mr-4">
+                    <FiPhone className="text-white text-[18px]" />
+                </div>
                 <button
                     onClick={toggleMenu}
-                    className={`p-2 text-black rounded focus:outline-none`}
+                    className="p-2 text-black rounded focus:outline-none"
                 >
-                    {/* Burger Icon */}
-                    <CiMenuFries />
+                    {isOpen ? (
+                        <IoMdClose className="text-xl" />
+                    ) : (
+                        <CiMenuFries className="text-xl" />
+                    )}
                 </button>
-
-                {/* Dropdown Menu */}
-                <div
-                    className={`absolute translate-y-1 -right-6 top-[47px] w-40 bg-[#F5E6E3] text-gray-800 rounded-bl-md shadow-lg overflow-hidden z-20 ${
-                        isOpen ? "" : "hidden"
-                    }`}
-                >
-                    {navOptions.map((text, i) => (
-                        <Link
-                            to={`#${text.title}`}
-                            key={i}
-                            onClick={i === 4 ? removeMenu : toggleMenu}
-                            className={`transition duration-500 flex justify-between items-center w-full px-4 py-2 hover:bg-gray-200`}
-                        >
-                            <div className="w-full z-10">{text.title}</div>
-                        </Link>
-                    ))}
-                </div>
             </div>
+
+            {/* Mobile dropdown menu with animation */}
+            <AnimatePresence>
+                {isOpen && (
+                    <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="fixed top-[61px] left-0 w-full bg-[#F5E6E3] shadow-lg z-[998]"
+                    >
+                        {navOptions.map((item, i) => (
+                            <motion.a
+                                key={i}
+                                href={"#"}
+                                initial={{ opacity: 0, y: -10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.1 }}
+                                className="flex justify-center items-center w-full px-4 py-4 hover:bg-gray-200 border-t border-white cursor-pointer"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    toggleMenu();
+                                    scrollToElementWithOffset(
+                                        item.to,
+                                        item.offset
+                                    );
+                                    console.log(item);
+                                }}
+                            >
+                                {item.title}
+                            </motion.a>
+                        ))}
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </motion.div>
     );
 };

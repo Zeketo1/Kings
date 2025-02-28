@@ -22,6 +22,7 @@ const Values = () => {
 
     return (
         <div className="px-10 lg:px-14 mb-20">
+            <span id="values"></span>
             <div className="flex mb-4 w-full gap-4 items-center font-medium">
                 <motion.p
                     initial={{ opacity: 0, x: -20 }}
