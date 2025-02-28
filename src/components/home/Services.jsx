@@ -106,7 +106,7 @@ const Services = () => {
                         </p>
                     </motion.div>
                 </div>
-
+                <div className="services__gradient rounded-full z-1 h-[900px] w-[900px] absolute -bottom-[1000px] -left-[250px]" />
                 {servicesOptions.map((item, i) => (
                     <div key={i} className="relative">
                         <motion.div
@@ -162,7 +162,7 @@ const Services = () => {
                     </div>
                 ))}
             </div>
-            <p id="about" className="mb-10 text-gray-600">
+            <p id="about" className="mb-10 text-gray-600 capitalize">
                 Let us handle the mess while you enjoy a fresh, spotless space.
             </p>
         </div>

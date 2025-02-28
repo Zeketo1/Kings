@@ -67,7 +67,9 @@ const Banner = () => {
                     alt={bannerImg}
                 />
             </div>
-            <div className="bubble__gradient hidden sm:block rounded-full z-1 h-[600px] w-[600px] absolute -bottom-[120px] -right-[250px]" />
+            <div>
+                <div className="bubble__gradient sm:block rounded-s-full z-1 h-[600px] w-[300px] absolute -bottom-[120px] -right-[0px]" />
+            </div>
             <img
                 id="services"
                 src={bubbles}

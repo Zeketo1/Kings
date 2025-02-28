@@ -1,17 +1,17 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-const AnimatedText = ({ 
-    text, 
-    className = "", 
+const AnimatedText = ({
+    text,
+    className = "",
     charClassName = "",
-    initialY = 50, 
-    initialX = 30, 
-    stiffness = 120, 
-    damping = 6, 
-    mass = 0.3, 
-    velocity = 2, 
-    delayMultiplier = 0.04 
+    initialY = 50,
+    initialX = 30,
+    stiffness = 120,
+    damping = 6,
+    mass = 0.3,
+    velocity = 2,
+    delayMultiplier = 0.04,
 }) => {
     return (
         <motion.div
@@ -20,14 +20,14 @@ const AnimatedText = ({
                 opacity: 1,
                 transition: { duration: 0.5 },
             }}
-            className={className}
+            className={className + " capitalize"}
         >
             {Array.from(text).map((char, index) => (
                 <motion.span
                     key={index}
                     initial={{ opacity: 0, y: initialY, x: initialX }}
-                    whileInView={{ 
-                        opacity: 1, 
+                    whileInView={{
+                        opacity: 1,
                         y: 0,
                         x: 0,
                         transition: {
@@ -36,8 +36,8 @@ const AnimatedText = ({
                             damping: damping,
                             delay: index * delayMultiplier,
                             mass: mass,
-                            velocity: velocity
-                        }
+                            velocity: velocity,
+                        },
                     }}
                     className={`${char === " " ? "mr-2" : ""} ${charClassName}`}
                 >

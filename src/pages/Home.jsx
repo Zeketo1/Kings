@@ -15,19 +15,17 @@ const Home = () => {
                 <Navbar />
                 <Bubbles />
                 <Banner />
-                <MotionWrapper>
-                    <Services />
-                </MotionWrapper>
-                <MotionWrapper delay={0.2}>
-                    <About />
-                </MotionWrapper>
+                <Services />
+                <About />
                 <div className="value__gradient">
-                    <MotionWrapper delay={0.3}>
-                        <Values />
-                    </MotionWrapper>
-                    <MotionWrapper delay={0.4}>
-                        <Ready />
-                    </MotionWrapper>
+                    <div
+                        style={{
+                            width: screen.width - 200 + "px",
+                        }}
+                        className="services__gradient rounded-full z-1 h-[700px] absolute -bottom-[2350px] left-[0px]"
+                    />
+                    <Values />
+                    <Ready />
                 </div>
                 <MotionWrapper delay={0.5}>
                     <Footer />
