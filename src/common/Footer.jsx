@@ -29,7 +29,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col items-start gap-5 w-fit sm:w-full">
+      <div className="flex  flex-col items-start gap-5 w-fit sm:w-full">
         <h1 className="font-semibold text-[18px]">Join our newsletter</h1>
         <div className="flex px-1 items-center bg-gray-400 w-full h-fit md:w-[350px] rounded-full">
           <input placeholder="Email Address" type="email" className="placeholder:text-gray-100 text-white focus:outline-none pl-5 placeholder:text-[15px] placeholder:pl-0 w-full py-2 bg-transparent" />
