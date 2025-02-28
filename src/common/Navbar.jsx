@@ -82,7 +82,6 @@ const Navbar = () => {
                         {navOptions.map((item, i) => (
                             <motion.a
                                 key={i}
-                                href={"#"}
                                 initial={{ opacity: 0, y: -10 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.1 }}
@@ -90,10 +89,12 @@ const Navbar = () => {
                                 onClick={(e) => {
                                     e.preventDefault();
                                     toggleMenu();
-                                    scrollToElementWithOffset(
-                                        item.to,
-                                        item.offset
-                                    );
+                                    setTimeout(() => {
+                                        scrollToElementWithOffset(
+                                            item.to,
+                                            item.offset
+                                        );
+                                    }, 500);
                                     console.log(item);
                                 }}
                             >

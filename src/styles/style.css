@@ -56,29 +56,6 @@ body {
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
-/* Only apply cursor: none on desktop devices */
-@media (min-width: 769px) {
-    * {
-        cursor: auto;
-    }
-}
-
-/* Apply cursor-pointer class to elements that should trigger the pointer variant */
-.phone__gradient,
-.cursor-pointer,
-a,
-button,
-[role="button"] {
-    cursor: none !important;
-}
-
-/* Improve hover states for interactive elements */
-a:hover,
-button:hover,
-.cursor-pointer:hover {
-    transition: all 0.2s ease;
-}
-
 .bubble__gradient {
     background: rgba(112, 131, 200, 55%);
     filter: blur(243px);

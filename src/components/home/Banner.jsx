@@ -48,11 +48,11 @@ const Banner = () => {
                     transition={{ duration: 0.7, delay: 0.5 }}
                     className="flex items-center gap-4"
                 >
-                    <div className="text-[14px] cursor-pointer lg:text-[16px] flex gap-3 text-white items-center font-[600] phone__gradient w-fit py-2 pl-4 pr-2 rounded-full">
+                    <div className="text-[14px] bubbling cursor-pointer lg:text-[16px] flex gap-3 text-white items-center font-[600] phone__gradient w-fit py-2 pl-4 pr-2 rounded-full">
                         GET A FREE QUOTE{" "}
                         <img src={bucket} alt="" className="h-[30px]" />
                     </div>
-                    <p className="flex items-center cursor-pointer text-white justify-center phone__gradient rounded-full h-[47px] w-[47px] text-[25px] font-bold">
+                    <p className="flex items-center bubbling cursor-pointer text-white justify-center phone__gradient rounded-full h-[47px] w-[47px] text-[25px] font-bold">
                         ?
                     </p>
                 </motion.div>

@@ -152,7 +152,7 @@ const Services = () => {
                                 ))}
                             </div>
                             <motion.div
-                                className="flex m-auto mt-5 cursor-pointer items-center gap-7 p-3 rounded-full w-fit text-white font-medium phone__gradient"
+                                className="bubbling flex m-auto mt-5 cursor-pointer items-center gap-7 p-3 rounded-full w-fit text-white font-medium phone__gradient"
                                 whileTap={{ scale: 0.95 }}
                             >
                                 BOOK SERVICES{" "}
