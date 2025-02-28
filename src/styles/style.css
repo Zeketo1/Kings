@@ -17,9 +17,20 @@
 .phone__gradient {
   background: linear-gradient(
     to right,
-    #7083c8 0%,
+    #7083c8 -50%,
     #e2bfcb 33%,
-    #d098b3 66%,
-    #7083c8 100%
+    #d098b3 86%,
+    #7083c8 110%
+  ) !important;
+}
+
+.value__gradient {
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    transparent,
+    #7083c817,
+    #7083c817,
+    transparent
   ) !important;
 }

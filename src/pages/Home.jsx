@@ -10,8 +10,8 @@ import MotionWrapper from "../components/MotionWrapper";
 
 const Home = () => {
   return (
-    <div className="flex flex-col items-center">
-      <div className="w-[90%] 2xl:w-[80%] 3xl:w-[70%]">
+    <div className="flex over flex-col items-center">
+      <div className="w-full sm:w-[90%] 2xl:w-[80%] 3xl:w-[70%]">
         <Navbar />
         <Bubbles />
         <MotionWrapper>
@@ -23,12 +23,14 @@ const Home = () => {
         <MotionWrapper delay={0.2}>
           <About />
         </MotionWrapper>
-        <MotionWrapper delay={0.3}>
-          <Values />
-        </MotionWrapper>
-        <MotionWrapper delay={0.4}>
-          <Ready />
-        </MotionWrapper>
+        <div className="value__gradient">
+          <MotionWrapper delay={0.3}>
+            <Values />
+          </MotionWrapper>
+          <MotionWrapper delay={0.4}>
+            <Ready />
+          </MotionWrapper>
+        </div>
         <MotionWrapper delay={0.5}>
           <Footer />
         </MotionWrapper>

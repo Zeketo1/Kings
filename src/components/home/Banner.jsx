@@ -5,7 +5,7 @@ import { motion } from "motion/react";
 
 const Banner = () => {
   return (
-    <div className="flex mb-5 justify-center md:justify-between items-center h-[90vh] xl:h-[80vh] 2xl:h-[70vh] px-5 lg:px-14">
+    <div className="flex mb-10 overflow-hidden justify-center md:justify-between items-center h-[90vh] xl:h-[80vh] 2xl:h-[70vh] px-5 lg:px-14">
       <div>
         <div className="text-[30px] lg:text-[45px] text-[#7985C7] font-righteous font-[400]">
           <motion.p
@@ -46,7 +46,7 @@ const Banner = () => {
         </div>
       </div>
       <motion.img
-        initial={{ x: 400 }}
+        initial={{ x: 500 }}
         animate={{ x: 0 }}
         transition={{ duration: 0.5, delay: 0.5 }}
         className="hidden md:block"
@@ -60,6 +60,7 @@ const Banner = () => {
         alt=""
         className="h-[400px] absolute -bottom-[120px] right-0"
       />
+      <div className="absolute z-[100] -left-[70px] -top-16 yellow__gradient h-[400px] w-[400px]"></div>
     </div>
   );
 };
