@@ -1,36 +1,73 @@
 .yellow__gradient {
-  background: radial-gradient(circle, #fffabb3d, transparent);
+    background: radial-gradient(circle, #fffabb3d, transparent);
 }
 
 .glass {
-  /* box-shadow: 0 3px 4px rgba(0, 0, 0, 0.087); */
-  backdrop-filter: blur(2.3px);
-  -webkit-backdrop-filter: blur(2.3px);
+    /* box-shadow: 0 3px 4px rgba(0, 0, 0, 0.087); */
+    backdrop-filter: blur(2.3px);
+    -webkit-backdrop-filter: blur(2.3px);
 }
 
 .glass2 {
-  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.087);
-  backdrop-filter: blur(2.3px);
-  -webkit-backdrop-filter: blur(2.3px);
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.087);
+    backdrop-filter: blur(2.3px);
+    -webkit-backdrop-filter: blur(2.3px);
 }
 
 .phone__gradient {
-  background: linear-gradient(
-    to right,
-    #7083c8 -50%,
-    #e2bfcb 33%,
-    #d098b3 86%,
-    #7083c8 110%
-  ) !important;
+    background: linear-gradient(
+        to right,
+        #7083c8 -50%,
+        #e2bfcb 33%,
+        #d098b3 86%,
+        #7083c8 110%
+    ) !important;
 }
 
 .value__gradient {
-  background: linear-gradient(
-    to bottom,
-    transparent,
-    transparent,
-    #7083c817,
-    #7083c817,
-    transparent
-  ) !important;
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        transparent,
+        #7083c817,
+        #7083c817,
+        transparent
+    ) !important;
+}
+
+/* Hide scrollbar but allow scrolling */
+::-webkit-scrollbar {
+    display: none;
+}
+
+/* Ensure content is still scrollable */
+html,
+body {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    scroll-behavior: smooth;
+}
+
+/* Custom cursor styles */
+.cursor-container {
+    mix-blend-mode: normal;
+    will-change: transform;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+/* Only apply cursor: none on desktop devices */
+@media (min-width: 769px) {
+  * {
+    cursor: none !important;
+  }
+}
+
+/* Apply cursor-pointer class to elements that should trigger the pointer variant */
+.phone__gradient, .cursor-pointer, a, button, [role="button"] {
+    cursor: none !important;
+}
+
+/* Improve hover states for interactive elements */
+a:hover, button:hover, .cursor-pointer:hover {
+    transition: all 0.2s ease;
 }

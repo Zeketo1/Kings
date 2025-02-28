@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { IoMdArrowRoundForward } from "react-icons/io";
+import AnimatedText from "../../common/AnimatedText";
 
 const Services = () => {
     const servicesOptions = [
@@ -55,19 +56,13 @@ const Services = () => {
                     initial={{ scaleX: 0 }}
                     whileInView={{ scaleX: 1 }}
                     transition={{ duration: 0.8 }}
-                    className="rounded-full h-[2px] w-full bg-gray-400"
+                    className="rounded-full h-[1px] w-full bg-gray-400"
                 />
             </div>
-            <motion.h1
-                initial={{ x: -400 }}
-                whileInView={{
-                    x: 0,
-                    transition: { duration: 0.5, bounce: 3.5 },
-                }}
-                className="text-[30px] lg:text-[45px] mb-3 text-[#7985C7] font-righteous font-[400] sm:hidden md:block"
-            >
-                What We Can Do For You?
-            </motion.h1>
+            <AnimatedText
+                text="What We Can Do For You?"
+                className="text-[30px] lg:text-[45px] mb-3 text-[#7985C7] font-righteous font-[400] sm:hidden lg:block"
+            />
             <motion.p
                 initial={{ y: -50, opacity: 0 }}
                 whileInView={{
@@ -75,7 +70,7 @@ const Services = () => {
                     opacity: 1,
                     transition: { duration: 0.5, bounce: 3.5 },
                 }}
-                className="text-[14px] md:text-[16px] sm:hidden md:block"
+                className="text-[14px] md:text-[16px] sm:hidden lg:block"
             >
                 We offer a wide range of professional cleaning services to suit
                 every space, ensuring a clean, hygienic, and welcoming <br />{" "}
@@ -83,7 +78,7 @@ const Services = () => {
             </motion.p>
 
             <div className="my-14 grid w-full place-items-center sm:grid-cols-2 lg:grid-cols-3 gap-10">
-                <div className="relative hidden sm:block md:hidden h-full">
+                <div className="relative hidden sm:block lg:hidden h-full">
                     <motion.div
                         style={{ backgroundColor: "transparent" }}
                         className="flex flex-col z-1 cursor-pointer justify-between px-5 py-10 rounded-[30px] max-w-[300px] relative"
