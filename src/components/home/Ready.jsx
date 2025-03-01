@@ -9,7 +9,7 @@ const Ready = () => {
                     text="Clean Spaces, Happy Faces!"
                     className="text-[30px] lg:text-[45px] mb-3 text-[#7985C7] font-righteous font-[400] sm:hidden md:block"
                 />
-                <button className="bubbling py-2 px-5 text-[14napx] lg:text-[15px] rounded-full bg-[#343851] text-white font-medium">
+                <button className="py-2 px-5 text-[14napx] lg:text-[15px] rounded-full bg-[#343851] text-white font-medium">
                     SCHEDULE A CALL
                 </button>
             </div>
