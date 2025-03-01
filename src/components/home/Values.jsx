@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import AnimatedText from "../../common/AnimatedText";
+import FloatingBubbles from "../../common/FloatingBubbles";
 
 const Values = () => {
     const values = [
@@ -88,6 +89,7 @@ const Values = () => {
                     </motion.div>
                 ))}
             </div>
+            {/* <FloatingBubbles /> */}
         </div>
     );
 };

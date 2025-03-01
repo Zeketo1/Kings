@@ -48,7 +48,7 @@ const Navbar = () => {
                     </a>
                 ))}
                 <div className="phone__gradient p-2 h-fit w-fit rounded-full flex items-center justify-center">
-                    <FiPhone className="text-white text-[18px]" />
+                    <FiPhone className="text-white text-[10px] sm:text-[18px]" />
                 </div>
             </div>
 

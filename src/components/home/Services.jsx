@@ -95,8 +95,13 @@ const Services = () => {
                             ease: "easeOut",
                         }}
                     >
-                        <h1 className="text-[30px] lg:text-[45px] mb-3 text-[#7985C7] font-righteous font-[400]">
-                            What We Can Do For You?
+                        <h1 className="text-[30px] lg:text-[45px] mb-4 text-[#7985C7] font-righteous font-[400]">
+                            What We Can Do{" "}
+                            <span className="text-[50px]">For You?</span>
+                            <br />
+                            <span className="text-[30px] lg:text-[45px]">
+                                (A lot!)
+                            </span>
                         </h1>
 
                         <p className="mb-4">
@@ -152,7 +157,7 @@ const Services = () => {
                                 ))}
                             </div>
                             <motion.div
-                                className="bubbling flex m-auto mt-5 cursor-pointer items-center gap-7 p-3 rounded-full w-fit text-white font-medium phone__gradient"
+                                className="bubbling flex m-auto mt-5 text-[18px] cursor-pointer items-center gap-7 p-3 rounded-full w-fit text-white font-medium phone__gradient"
                                 whileTap={{ scale: 0.95 }}
                             >
                                 BOOK SERVICES{" "}
