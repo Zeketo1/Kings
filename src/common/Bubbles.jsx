@@ -251,17 +251,27 @@ const Bubbles = () => {
     // Check if device is mobile - only run once
     useEffect(() => {
         const checkIfMobile = () => {
-            const isTouchDevice =
+            // Check for mobile user agent patterns
+            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            const mobileRegex = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
+            const isMobileDevice = mobileRegex.test(userAgent);
+            
+            // Check for mobile viewport size (typical mobile width)
+            const isMobileViewport = window.innerWidth <= 768;
+            
+            // Check for touch capability, but don't use it as the only criteria
+            const hasTouchCapability = 
                 "ontouchstart" in window ||
                 navigator.maxTouchPoints > 0 ||
                 navigator.msMaxTouchPoints > 0;
-
-            const isMobileViewport = window.innerWidth <= 768;
-            return isTouchDevice || isMobileViewport;
+                
+            // Only consider it mobile if:
+            // 1. It has a mobile user agent OR
+            // 2. It has both a mobile viewport AND touch capability
+            return isMobileDevice || (isMobileViewport && hasTouchCapability);
         };
 
         setIsMobile(checkIfMobile());
-        console.log(checkIfMobile());
 
         // Use a more efficient resize handler with debounce
         const handleResize = () => {
