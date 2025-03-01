@@ -86,8 +86,11 @@ body {
 #contact div > p,
 a {
     cursor: pointer;
+}
+
+#contact div > p:hover,
+a:hover {
     text-decoration: underline;
-    color: #7985c7;
 }
 
 .phone__gradient {
