@@ -30,7 +30,7 @@ const About = () => {
                         text="More than just a cleaning service"
                         className="text-[30px] lg:text-[45px] mb-3 text-[#7985C7] font-righteous font-[400] sm:hidden md:block"
                     />
-                    <p className="lg:w-[530px]">
+                    <p className="lg:w-[460px]">
                         “King’s Precise Cleaning - Cleaning with Purpose,
                         Building a Legacy” The story of King’s Precise Cleaning
                         began with a dream—not just of building a successful
