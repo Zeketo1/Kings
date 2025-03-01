@@ -95,7 +95,7 @@ const MemoizedBubble = memo(({ id, left, top, size, duration }) => {
 });
 
 // Maximum number of bubbles to show to prevent performance issues
-const MAX_BUBBLES = 35;
+const MAX_BUBBLES = 20;
 
 // Shake detection sensitivity
 const SHAKE_THRESHOLD = 8; // Minimum distance to consider it a shake
