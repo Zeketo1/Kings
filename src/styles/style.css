@@ -89,3 +89,25 @@ a {
     text-decoration: underline;
     color: #7985c7;
 }
+
+.phone__gradient {
+    background: radial-gradient(
+        90.16% 143.01% at 15.32% 21.04%,
+        rgba(227, 195, 210, 0.2) 0%,
+        rgba(101, 108, 176, 0.2) 77.08%,
+        rgba(227, 195, 210, 0.2) 100%
+    );
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+/* Add default gradient styling for bubbling elements */
+.bubbling {
+    background: linear-gradient(
+        to right,
+        #7083c8 -50%,
+        #e2bfcb 33%,
+        #d098b3 86%,
+        #7083c8 110%
+    );
+    transition: background 0.8s ease-in-out;
+}
