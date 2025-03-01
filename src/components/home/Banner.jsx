@@ -38,7 +38,7 @@ const Banner = () => {
                         <img
                             src={bannerImg}
                             alt=""
-                            className="h-[80px] w-[80px] sm:hidden mr-[20px]"
+                            className="h-[80px] w-[80px] sm:hidden mr-[0px] bounce-phone"
                         />
                     </div>
                     <motion.p

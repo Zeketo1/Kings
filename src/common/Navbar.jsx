@@ -95,7 +95,6 @@ const Navbar = () => {
                                             item.offset
                                         );
                                     }, 500);
-                                    console.log(item);
                                 }}
                             >
                                 {item.title}
