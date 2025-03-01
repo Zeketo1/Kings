@@ -11,7 +11,7 @@ import MotionWrapper from "../components/MotionWrapper";
 const Home = () => {
     return (
         <div className="flex over flex-col items-center">
-            <div className="w-full sm:w-[90%] 2xl:w-[80%] 3xl:w-[70%]">
+            <div className="w-full sm:w-[90%] 2xl:w-[80%] 3xl:w-[70%] border-[1px] border-[red]">
                 <Navbar />
                 <Bubbles />
                 <Banner />
