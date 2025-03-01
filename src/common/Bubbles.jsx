@@ -140,94 +140,113 @@ const Bubbles = () => {
     }, []);
 
     // Check if the mouse movement is a shaking motion
-    const detectShaking = useCallback((currentPosition) => {
-        if (!isOverBubblingElement) return false;
+    const detectShaking = useCallback(
+        (currentPosition) => {
+            if (!isOverBubblingElement) return false;
 
-        const positions = previousMousePositionsRef.current;
-        positions.push(currentPosition);
-        
-        // Only keep recent positions (last 10)
-        if (positions.length > 10) {
-            positions.shift();
-        }
+            const positions = previousMousePositionsRef.current;
+            positions.push(currentPosition);
 
-        // Need at least a few positions to detect shaking
-        if (positions.length < 5) return false;
+            // Only keep recent positions (last 10)
+            if (positions.length > 10) {
+                positions.shift();
+            }
 
-        // Calculate movement in different directions
-        let horizontalChanges = 0;
-        let verticalChanges = 0;
-        let totalDistance = 0;
+            // Need at least a few positions to detect shaking
+            if (positions.length < 5) return false;
 
-        for (let i = 1; i < positions.length; i++) {
-            const dx = positions[i].x - positions[i - 1].x;
-            const dy = positions[i].y - positions[i - 1].y;
-            const distance = Math.sqrt(dx * dx + dy * dy);
-            
-            totalDistance += distance;
-            
-            // Detect direction changes (shaking back and forth)
-            if (i > 1) {
-                const prevDx = positions[i - 1].x - positions[i - 2].x;
-                const prevDy = positions[i - 1].y - positions[i - 2].y;
-                
-                // If direction changed
-                if (Math.sign(dx) !== Math.sign(prevDx)) {
-                    horizontalChanges++;
-                }
-                if (Math.sign(dy) !== Math.sign(prevDy)) {
-                    verticalChanges++;
+            // Calculate movement in different directions
+            let horizontalChanges = 0;
+            let verticalChanges = 0;
+            let totalDistance = 0;
+
+            for (let i = 1; i < positions.length; i++) {
+                const dx = positions[i].x - positions[i - 1].x;
+                const dy = positions[i].y - positions[i - 1].y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                totalDistance += distance;
+
+                // Detect direction changes (shaking back and forth)
+                if (i > 1) {
+                    const prevDx = positions[i - 1].x - positions[i - 2].x;
+                    const prevDy = positions[i - 1].y - positions[i - 2].y;
+
+                    // If direction changed
+                    if (Math.sign(dx) !== Math.sign(prevDx)) {
+                        horizontalChanges++;
+                    }
+                    if (Math.sign(dy) !== Math.sign(prevDy)) {
+                        verticalChanges++;
+                    }
                 }
             }
-        }
 
-        // Consider it shaking if there are multiple direction changes and enough movement
-        const isShaking = (horizontalChanges + verticalChanges >= 5) && (totalDistance >= SHAKE_THRESHOLD);
-        return isShaking;
-    }, [isOverBubblingElement]);
+            // Consider it shaking if there are multiple direction changes and enough movement
+            const isShaking =
+                horizontalChanges + verticalChanges >= 5 &&
+                totalDistance >= SHAKE_THRESHOLD;
+            return isShaking;
+        },
+        [isOverBubblingElement]
+    );
 
     // Progress the cleaning when shaking is detected
-    const updateCleaningProgress = useCallback((isShaking) => {
-        // Always update the last cursor activity time when this function is called
-        // (since it's called on mousemove)
-        lastCursorActivityRef.current = Date.now();
-        
-        // Clear any existing reset timer whenever there's cursor activity
-        if (colorResetTimerRef.current) {
-            clearTimeout(colorResetTimerRef.current);
-            colorResetTimerRef.current = null;
-        }
-        
-        if (isShaking) {
-            setCleaningProgress(prevProgress => {
-                // If already at maximum, don't update to prevent flickering
-                if (prevProgress >= 1) return prevProgress;
-                
-                const newProgress = Math.min(prevProgress + CLEANING_RATE, 1);
-                
-                // Element is considered clean when progress is 1
-                if (newProgress >= 1 && !isCleanedRef.current) {
-                    isCleanedRef.current = true;
-                    
-                    // Create extra bubbles for a "clean" effect
-                    const cleanBubbles = Array.from({ length: 8 }, createBubble);
-                    setBubbles(prev => [...prev.slice(-MAX_BUBBLES + 8), ...cleanBubbles]);
-                }
-                
-                return newProgress;
-            });
-        } else {
-            // Only check for timeout if we have some cleaning progress but not yet at 100%
-            if (cleaningProgress > 0 && cleaningProgress < 1) {
-                const now = Date.now();
-                
-                // If no cleaning for a while, gradually decrease
-                if (now - lastCursorActivityRef.current > 2000) {
-                    setCleaningProgress(prevProgress => Math.max(prevProgress - 0.01, 0));
+    const updateCleaningProgress = useCallback(
+        (isShaking) => {
+            // Always update the last cursor activity time when this function is called
+            // (since it's called on mousemove)
+            lastCursorActivityRef.current = Date.now();
+
+            // Clear any existing reset timer whenever there's cursor activity
+            if (colorResetTimerRef.current) {
+                clearTimeout(colorResetTimerRef.current);
+                colorResetTimerRef.current = null;
+            }
+
+            if (isShaking) {
+                setCleaningProgress((prevProgress) => {
+                    // If already at maximum, don't update to prevent flickering
+                    if (prevProgress >= 1) return prevProgress;
+
+                    const newProgress = Math.min(
+                        prevProgress + CLEANING_RATE,
+                        1
+                    );
+
+                    // Element is considered clean when progress is 1
+                    if (newProgress >= 1 && !isCleanedRef.current) {
+                        isCleanedRef.current = true;
+
+                        // Create extra bubbles for a "clean" effect
+                        const cleanBubbles = Array.from(
+                            { length: 8 },
+                            createBubble
+                        );
+                        setBubbles((prev) => [
+                            ...prev.slice(-MAX_BUBBLES + 8),
+                            ...cleanBubbles,
+                        ]);
+                    }
+
+                    return newProgress;
+                });
+            } else {
+                // Only check for timeout if we have some cleaning progress but not yet at 100%
+                if (cleaningProgress > 0 && cleaningProgress < 1) {
+                    const now = Date.now();
+
+                    // If no cleaning for a while, gradually decrease
+                    if (now - lastCursorActivityRef.current > 2000) {
+                        setCleaningProgress((prevProgress) =>
+                            Math.max(prevProgress - 0.01, 0)
+                        );
+                    }
                 }
             }
-        }
-    }, [cleaningProgress, createBubble]);
+        },
+        [cleaningProgress, createBubble]
+    );
 
     // Check if device is mobile - only run once
     useEffect(() => {
@@ -242,6 +261,7 @@ const Bubbles = () => {
         };
 
         setIsMobile(checkIfMobile());
+        console.log(checkIfMobile());
 
         // Use a more efficient resize handler with debounce
         const handleResize = () => {
@@ -277,22 +297,22 @@ const Bubbles = () => {
         const handleMouseMove = (e) => {
             const currentPosition = { x: e.clientX, y: e.clientY };
             mousePositionRef.current = currentPosition;
-            
+
             // Update the last cursor activity time
             lastCursorActivityRef.current = Date.now();
-            
+
             // Clear any existing reset timer when cursor moves
             if (colorResetTimerRef.current) {
                 clearTimeout(colorResetTimerRef.current);
                 colorResetTimerRef.current = null;
             }
-            
+
             // Check if this is a shaking motion
             const isShaking = detectShaking(currentPosition);
-            
+
             // Update cleaning progress based on shaking
             updateCleaningProgress(isShaking);
-            
+
             // Throttle the state updates for better performance
             const now = performance.now();
             if (now - lastUpdateTime >= FRAME_TIME) {
@@ -302,7 +322,7 @@ const Bubbles = () => {
                     lastUpdateTime = now;
                 });
             }
-            
+
             resetIdleTimer();
         };
 
@@ -310,14 +330,18 @@ const Bubbles = () => {
         const handleMouseEvent = (e) => {
             // Use event delegation for both mouseover and mouseout
             const element = e.target;
-            const isBubblingElement = 
-                element.classList.contains("bubbling") || 
-                (element.parentElement && element.parentElement.classList.contains("bubbling"));
-            
+            const isBubblingElement =
+                element.classList.contains("bubbling") ||
+                (element.parentElement &&
+                    element.parentElement.classList.contains("bubbling"));
+
             // Only update state if there's an actual change
-            if (e.type === "mouseover" && isBubblingElement !== isOverBubblingElement) {
+            if (
+                e.type === "mouseover" &&
+                isBubblingElement !== isOverBubblingElement
+            ) {
                 setIsOverBubblingElement(isBubblingElement);
-                
+
                 // Reset cleaning progress when moving to a new element
                 if (isBubblingElement && cleaningProgress >= 1) {
                     setCleaningProgress(0);
@@ -327,10 +351,16 @@ const Bubbles = () => {
         };
 
         // Use event delegation with capture for better performance
-        document.addEventListener("mousemove", handleMouseMove, { passive: true });
-        document.addEventListener("mouseover", handleMouseEvent, { passive: true });
-        document.addEventListener("mouseout", handleMouseEvent, { passive: true });
-        
+        document.addEventListener("mousemove", handleMouseMove, {
+            passive: true,
+        });
+        document.addEventListener("mouseover", handleMouseEvent, {
+            passive: true,
+        });
+        document.addEventListener("mouseout", handleMouseEvent, {
+            passive: true,
+        });
+
         // Initialize idle timer
         resetIdleTimer();
 
@@ -342,7 +372,13 @@ const Bubbles = () => {
             clearTimeout(colorResetTimerRef.current);
             cancelAnimationFrame(rafId);
         };
-    }, [isMobile, isOverBubblingElement, cleaningProgress, detectShaking, updateCleaningProgress]);
+    }, [
+        isMobile,
+        isOverBubblingElement,
+        cleaningProgress,
+        detectShaking,
+        updateCleaningProgress,
+    ]);
 
     // Handle cursor style updates
     useEffect(() => {
@@ -402,13 +438,16 @@ const Bubbles = () => {
     // Set up a monitor to check for cursor inactivity and reset cleaning progress when needed
     useEffect(() => {
         if (isMobile || cleaningProgress === 0) return;
-        
+
         // Check every second if the cursor has been idle long enough to reset
         const inactivityCheckInterval = setInterval(() => {
             const now = Date.now();
-            
+
             // If cursor has been inactive for CURSOR_IDLE_RESET_TIME and we have some cleaning progress
-            if (now - lastCursorActivityRef.current > CURSOR_IDLE_RESET_TIME && cleaningProgress > 0) {
+            if (
+                now - lastCursorActivityRef.current > CURSOR_IDLE_RESET_TIME &&
+                cleaningProgress > 0
+            ) {
                 // Only schedule reset if one isn't already scheduled
                 if (!colorResetTimerRef.current) {
                     colorResetTimerRef.current = setTimeout(() => {
@@ -419,7 +458,7 @@ const Bubbles = () => {
                 }
             }
         }, 1000);
-        
+
         return () => {
             clearInterval(inactivityCheckInterval);
             if (colorResetTimerRef.current) {
@@ -433,8 +472,8 @@ const Bubbles = () => {
 
     return (
         <>
-            <GlobalCursorStyle 
-                isActive={isOverBubblingElement} 
+            <GlobalCursorStyle
+                isActive={isOverBubblingElement}
                 cleaningProgress={cleaningProgress}
             />
             <BubbleContainer>
