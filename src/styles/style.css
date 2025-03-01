@@ -83,6 +83,23 @@ body {
     transition: transform 0.3s ease;
 }
 
+@keyframes elevate-subtle {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.bounce-phone {
+    animation: elevate-subtle 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    transition: transform 0.3s ease;
+}
+
 #contact div > p,
 a {
     cursor: pointer;
